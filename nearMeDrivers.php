@@ -12,22 +12,21 @@ if (isset($_GET['employee_id'])) {
      
     // get the user by email and password
     $driverArray = $db->getSameZoneDrivers($employee_id);
-    // $number = count($driverArray);
-    // print_r($number);
+    $number = count($driverArray);
+    //print_r($driverArray);
  
     if ($driverArray != false) {
         
-    // 	$response["error"] = FALSE;
+        $response["error"] = FALSE;
 
-    // 	for ($i=1; $i<= $number; $i++){
+        for ($i=0; $i< $number; $i++){
 
-  		// $response["user"]["employee_id"] = $user["employee_id"];
-    //     $response["user"]["email"] = $user["email"];
-    //     $response["user"]["created_at"] = $user["created_at"];
-    //     $response["user"]["updated_at"] = $user["updated_at"];
-    //     echo json_encode($response);
+        	$response["user"][$i] = array("employee_id"=>$driverArray[$i][0],"name"=>$driverArray[$i][1],"address"=>$driverArray[$i][6],"designation"=>$driverArray[$i][7]);
+            
 
-    // 	}
+    	}
+            //$str=json_encode($response);
+            echo json_encode($response);die;
 
 
      } 
